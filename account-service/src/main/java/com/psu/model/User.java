@@ -24,7 +24,6 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    // If you need more complex constructors, you can add them as well
     // Remember to use @AllArgsConstructor or @RequiredArgsConstructor if necessary
 
 }
