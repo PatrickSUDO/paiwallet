@@ -21,7 +21,7 @@ public class UserController {
         return ResponseEntity.ok(registeredUser); // You might want to mask sensitive information
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("profile/{username}")
     public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
         Optional<User> user = userService.findByUsername(username);
         return user.map(ResponseEntity::ok)
