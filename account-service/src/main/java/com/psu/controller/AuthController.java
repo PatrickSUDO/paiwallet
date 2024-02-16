@@ -3,7 +3,6 @@ package com.psu.controller;
 import com.psu.model.AuthRequest;
 import com.psu.model.AuthResponse;
 import com.psu.security.JWTUtil;
-import com.psu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,9 +23,6 @@ public class AuthController {
 
     @Autowired
     private JWTUtil jwtUtil;
-
-    @Autowired
-    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
