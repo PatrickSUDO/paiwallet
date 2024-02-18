@@ -34,10 +34,29 @@ public class AuthController {
                     )
             );
             // Generate JWT token
-            String token = jwtUtil.generateToken(authRequest.getUsername());
-            return ResponseEntity.ok(new AuthResponse(token));
+            String accessToken = jwtUtil.generateToken(authRequest.getUsername(), 1);
+            String refreshToken = jwtUtil.generateToken(authRequest.getUsername(), 10);
+            return ResponseEntity.ok(new AuthResponse(accessToken, refreshToken));
         } catch (AuthenticationException e) {
             return ResponseEntity.badRequest().body("Login failed: " + e.getMessage());
         }
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshAccessToken(@RequestBody String refreshToken) {
+        try {
+            if (jwtUtil.validateToken(refreshToken)) {
+                String username = jwtUtil.getUsernameFromToken(refreshToken);
+                String newAccessToken = jwtUtil.generateToken(username, 1);
+                // Optionally, you could also generate a new refresh token and return it here
+                return ResponseEntity.ok(new AuthResponse(newAccessToken, null)); // Pass null or the new refresh token
+            } else {
+                return ResponseEntity.badRequest().body("Invalid refresh token");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Could not refresh token: " + e.getMessage());
+        }
+    }
 }
+
+

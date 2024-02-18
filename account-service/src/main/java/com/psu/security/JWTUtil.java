@@ -1,12 +1,12 @@
 package com.psu.security;
 
 import io.jsonwebtoken.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Component
 public class JWTUtil {
@@ -19,9 +19,9 @@ public class JWTUtil {
     @Value("${jwt.expiration}")
     private Long expirationTime;
 
-    public String generateToken(String username) {
+    public String generateToken(String username, int expirationFactor) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + expirationTime);
+        Date expiryDate = new Date(now.getTime() + expirationTime * expirationFactor);
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(now)
@@ -29,6 +29,7 @@ public class JWTUtil {
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
+
 
     public String getUsernameFromToken(String token) {
         return Jwts.parser()
