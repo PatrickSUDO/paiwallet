@@ -1,6 +1,9 @@
 # PaiWallet: Digital Wallet Platform
 
-PaiWallet is a comprehensive digital wallet platform that allows users to store and manage their virtual currency, perform transactions, and track their transaction history securely and efficiently. Built with a microservices architecture, PaiWallet offers functionalities like user authentication, wallet management, P2P transfers, bill payments, and more, ensuring a seamless financial experience for users.
+PaiWallet is a comprehensive digital wallet platform that allows users to store and manage their virtual currency,
+perform transactions, and track their transaction history securely and efficiently. Built with a microservices
+architecture, PaiWallet offers functionalities like user authentication, wallet management, P2P transfers, bill
+payments, and more, ensuring a seamless financial experience for users.
 
 ## Features
 
@@ -25,9 +28,9 @@ PaiWallet is composed of several microservices, each serving a unique function:
 
 - **Spring Boot & Spring Cloud**: For building microservices and the configuration server.
 - **Spring Cloud Netflix**: Eureka for service discovery and Hystrix for fault tolerance.
-- **Hibernate & Spring Data JPA**: For ORM and data access.
+- **Spring Data MongoDB**: For ORM and data access.
 - **Redis**: For caching and session storage.
-- **MongoDB**: NoSQL database for storing transaction logs and notifications.
+- **MongoDB**: NoSQL database for storing user profile, atransaction logs and notifications.
 - **Docker**: For containerizing the microservices.
 - **Elasticsearch & LogStash**: For search capabilities and centralized logging.
 - **Hmily**: For distributed transaction management.
@@ -35,7 +38,8 @@ PaiWallet is composed of several microservices, each serving a unique function:
 
 ## Getting Started
 
-Instructions on how to set up and run PaiWallet, including prerequisites, installation steps, and how to start each microservice.
+Instructions on how to set up and run PaiWallet, including prerequisites, installation steps, and how to start each
+microservice.
 
 ## Contributing
 
